@@ -14,7 +14,7 @@ def print_data():
         reader = csv.reader(csvfile, delimiter=',')
         sk = list(reader)
         # for row in reader:
-        print(sk[1][0])
+        #print(sk[1][0])
         csvfile.close()
     with open('output.csv','w') as csvfile1:
         writer = csv.writer(csvfile1)
@@ -24,10 +24,18 @@ def print_data():
         reader_out = csv.reader(csvfile2, delimiter=',')
         sk_out = list(reader_out)
         #START APPROXIMATION AND FILTRATION
-
-        #END__
+        sk_out.insert(2,[float(sk_out[1][0])/2+float(sk_out[2][0])/2,
+                         float(sk_out[1][1])/2+float(sk_out[2][1])/2,
+                         float(sk_out[1][2])/2+float(sk_out[2][2])/2,
+                         sk_out[1][3],
+                         sk_out[1][4]])
+        #END_
         print(sk_out)
         csvfile2.close()
+    with open('output.csv','w') as csvfile1:
+        writer = csv.writer(csvfile1)
+        writer.writerows(sk_out)
+        csvfile1.close()
 
 # initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting stream...")
